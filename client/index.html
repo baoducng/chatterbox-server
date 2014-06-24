@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>chatterbox</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- dependencies -->
+    <script src="bower_components/jquery/jquery.min.js"></script>
+    <!-- your scripts -->
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="scripts/config.js"></script>
+    <script src="scripts/app.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel">
+            <div class="input-group">
+              <input type="text" class="form-control" id="createMsgInput" />
+              <span class="input-group-btn">
+                <button class="btn btn-info" id="createMsgButton">Send</button>
+                <button class="btn btn-info" id="refresh"> <i class="fa fa-refresh"></i> </button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-md-4'>
+          <div class="panel">
+            <h4>Rooms</h4>
+          </div>
+          <div class="panel">
+            <ul id="roomsList" class="list-group"></ul>
+          </div>
+          <div class="panel">
+            <h4>Users</h4>
+          </div>
+          <div class="panel">
+            <ul id="usersList" class="list-group"></ul>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="panel">
+
+            <ul id="messagesList" class="list-group"></ul>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </body>
+</html>

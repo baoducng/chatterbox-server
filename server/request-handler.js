@@ -5,7 +5,7 @@
  * this file and include it in basic-server.js so that it actually works.
  * *Hint* Check out the node module documentation at http://nodejs.org/api/modules.html. */
 
-var handleRequest = function(request, response) {
+module.exports.handleRequest = function(request, response) {
   /* the 'request' argument comes from nodes http module. It includes info about the
   request - such as what URL the browser is requesting. */
 
@@ -13,23 +13,91 @@ var handleRequest = function(request, response) {
    * http://nodemanual.org/0.8.14/nodejs_ref_guide/http.html */
 
   console.log("Serving request type " + request.method + " for url " + request.url);
+ 
+
 
   var statusCode = 200;
-
+  var postStatusCode = 201;
+  var naStatusCode = 404;
   /* Without this line, this server wouldn't work. See the note
    * below about CORS. */
   var headers = defaultCorsHeaders;
-
   headers['Content-Type'] = "text/plain";
-
   /* .writeHead() tells our server what HTTP status code to send back */
-  response.writeHead(statusCode, headers);
+  //response.writeHead(statusCode, headers); //writing head with statusCode and header
+  // if (request.url === '/1/classes/log' && request.method === "GET"){
+  //   response.writeHead(statusCode, headers);
+  //   response.end('aaa');
+  // }
+  var message = JSON.stringify({results: [{
+        username: 'Jono',
+        message: 'Do my bidding!'}]});
+
+  if (request.url === '/classes/messages' && request.method ==="GET"){  
+    response.writeHead(statusCode, headers);
+    response.end(message);
+  } else if (request.url ==='/classes/messages' && request.method ==="POST"){
+    response.writeHead(postStatusCode, headers);
+    response.end();
+  } else {
+    response.writeHead(naStatusCode, headers);
+    response.end()
+  }
+
 
   /* Make sure to always call response.end() - Node will not send
    * anything back to the client until you do. The string you pass to
    * response.end() will be the body of the response - i.e. what shows
    * up in the browser.*/
-  response.end("Hello, World!");
+  //response.end("Hello, World!");
+};
+
+
+module.exports.handler = function(request, response) {
+  /* the 'request' argument comes from nodes http module. It includes info about the
+  request - such as what URL the browser is requesting. */
+
+  /* Documentation for both request and response can be found at
+   * http://nodemanual.org/0.8.14/nodejs_ref_guide/http.html */
+
+  console.log("Serving request type " + request.method + " for url " + request.url);
+ 
+
+
+  var statusCode = 200;
+  var postStatusCode = 201;
+  var naStatusCode = 404;
+  /* Without this line, this server wouldn't work. See the note
+   * below about CORS. */
+  var headers = defaultCorsHeaders;
+  headers['Content-Type'] = "text/plain";
+  /* .writeHead() tells our server what HTTP status code to send back */
+  //response.writeHead(statusCode, headers); //writing head with statusCode and header
+  // if (request.url === '/1/classes/log' && request.method === "GET"){
+  //   response.writeHead(statusCode, headers);
+  //   response.end('aaa');
+  // }
+  var message = JSON.stringify({results: [{
+        username: 'Jono',
+        message: 'Do my bidding!'}]});
+
+  if (request.url === '/classes/room1' && request.method ==="GET"){  
+    response.writeHead(statusCode, headers);
+    response.end(message);
+  } else if (request.url ==='/classes/room1' && request.method ==="POST"){
+    response.writeHead(postStatusCode, headers);
+    response.end();
+  } else {
+    response.writeHead(naStatusCode, headers);
+    response.end()
+  }
+
+
+  /* Make sure to always call response.end() - Node will not send
+   * anything back to the client until you do. The string you pass to
+   * response.end() will be the body of the response - i.e. what shows
+   * up in the browser.*/
+  //response.end("Hello, World!");
 };
 
 /* These headers will allow Cross-Origin Resource Sharing (CORS).
